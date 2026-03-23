@@ -2,52 +2,52 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Создание новой проблемы</title>
+  <title>РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РїСЂРѕР±Р»РµРјС‹</title>
   <link href="assets/tailwind.min.css" rel="stylesheet" />
   <link href="assets/styles.css" rel="stylesheet" />
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
 <header class="bg-white shadow p-4 flex justify-between items-center">
-  <h1 class="text-xl font-bold text-blue-600">СППР</h1>
+  <h1 class="text-xl font-bold text-blue-600">РЎРџРџР </h1>
   <nav class="space-x-4">
-    <a href="index.html" class="text-blue-700 hover:underline">Главная</a>
-    <a href="problems.html" class="text-blue-700 hover:underline">Проблемные ситуации</a>
-    <a href="login.html" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Вход</a>
+    <a href="index.html" class="text-blue-700 hover:underline">Р“Р»Р°РІРЅР°СЏ</a>
+    <a href="problems.html" class="text-blue-700 hover:underline">РџСЂРѕР±Р»РµРјРЅС‹Рµ СЃРёС‚СѓР°С†РёРё</a>
+    <a href="login.html" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Р’С…РѕРґ</a>
   </nav>
 </header>
 
 <main class="max-w-6xl mx-auto px-8 py-10">
-  <h2 class="text-3xl font-bold mb-6">Создание новой проблемной ситуации</h2>
+  <h2 class="text-3xl font-bold mb-6">РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕР№ РїСЂРѕР±Р»РµРјРЅРѕР№ СЃРёС‚СѓР°С†РёРё</h2>
   <form action="insert_problem.php" method="POST" class="space-y-6">
     <div>
-      <label for="title" class="block font-medium text-lg">Название проблемы</label>
+      <label for="title" class="block font-medium text-lg">РќР°Р·РІР°РЅРёРµ РїСЂРѕР±Р»РµРјС‹</label>
       <input type="text" id="title" name="title" required class="w-full p-3 mt-2 border rounded-md">
     </div>
     <div>
-      <label for="keywords" class="block font-medium text-lg">Ключевые слова</label>
+      <label for="keywords" class="block font-medium text-lg">РљР»СЋС‡РµРІС‹Рµ СЃР»РѕРІР°</label>
       <input type="text" id="keywords" name="keywords" required class="w-full p-3 mt-2 border rounded-md">
     </div>
     <div>
-      <label for="description" class="block font-medium text-lg">Описание ситуации</label>
+      <label for="description" class="block font-medium text-lg">РћРїРёСЃР°РЅРёРµ СЃРёС‚СѓР°С†РёРё</label>
       <textarea id="description" name="description" rows="4" required class="w-full p-3 mt-2 border rounded-md"></textarea>
     </div>
     <div>
-      <label for="category" class="block font-medium text-lg">Категория</label>
+      <label for="category" class="block font-medium text-lg">РљР°С‚РµРіРѕСЂРёСЏ</label>
       <select id="category" name="category" required class="w-full p-3 mt-2 border rounded-md">
-        <option value="финансовая">Финансовая</option>
-        <option value="техническая">Техническая</option>
-        <option value="коллективная">Коллективная</option>
+        <option value="С„РёРЅР°РЅСЃРѕРІР°СЏ">Р¤РёРЅР°РЅСЃРѕРІР°СЏ</option>
+        <option value="С‚РµС…РЅРёС‡РµСЃРєР°СЏ">РўРµС…РЅРёС‡РµСЃРєР°СЏ</option>
+        <option value="РєРѕР»Р»РµРєС‚РёРІРЅР°СЏ">РљРѕР»Р»РµРєС‚РёРІРЅР°СЏ</option>
       </select>
     </div>
     <div>
-      <label for="priority" class="block font-medium text-lg">Приоритет</label>
+      <label for="priority" class="block font-medium text-lg">РџСЂРёРѕСЂРёС‚РµС‚</label>
       <select id="priority" name="priority" required class="w-full p-3 mt-2 border rounded-md">
-        <option value="высокий">Высокий</option>
-        <option value="средний">Средний</option>
-        <option value="низкий">Низкий</option>
+        <option value="РІС‹СЃРѕРєРёР№">Р’С‹СЃРѕРєРёР№</option>
+        <option value="СЃСЂРµРґРЅРёР№">РЎСЂРµРґРЅРёР№</option>
+        <option value="РЅРёР·РєРёР№">РќРёР·РєРёР№</option>
       </select>
     </div>
-    <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">Создать проблему</button>
+    <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">РЎРѕР·РґР°С‚СЊ РїСЂРѕР±Р»РµРјСѓ</button>
   </form>
 </main>
 </body>
