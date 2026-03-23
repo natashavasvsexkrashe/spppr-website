@@ -6,20 +6,23 @@
   <link href="assets/tailwind.min.css" rel="stylesheet" />
   <link href="assets/styles.css" rel="stylesheet" />
 </head>
-<body class="bg-gray-100 text-gray-900 font-sans relative min-h-screen overflow-hidden">
+<body class="relative min-h-screen overflow-hidden font-sans">
 
-  <!-- Динамические градиентные шары -->
+  <!-- Градиентные пульсирующие шары -->
   <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
     <!-- Большой шар -->
-    <div class="absolute w-[150%] h-[150%] -translate-x-1/4 -translate-y-1/4 rounded-full bg-gradient-radial from-blue-600 to-white opacity-70 animate-pulseSlow"></div>
+    <div class="absolute w-[150%] h-[150%] -translate-x-1/4 -translate-y-1/4 rounded-full opacity-70"
+         style="background: radial-gradient(circle, #2563EB, #ffffff); animation: pulseSlow 8s ease-in-out infinite;"></div>
     <!-- Средний шар -->
-    <div class="absolute w-[100%] h-[100%] top-1/4 left-1/4 rounded-full bg-gradient-radial from-blue-400 to-white opacity-50 animate-pulseSlow delay-2s"></div>
+    <div class="absolute w-[100%] h-[100%] top-1/4 left-1/4 rounded-full opacity-50"
+         style="background: radial-gradient(circle, #60A5FA, #ffffff); animation: pulseSlow 8s ease-in-out infinite 2s;"></div>
     <!-- Малый шар -->
-    <div class="absolute w-[50%] h-[50%] bottom-0 right-0 rounded-full bg-gradient-radial from-blue-300 to-white opacity-40 animate-pulseSlow delay-4s"></div>
+    <div class="absolute w-[50%] h-[50%] bottom-0 right-0 rounded-full opacity-40"
+         style="background: radial-gradient(circle, #93C5FD, #ffffff); animation: pulseSlow 8s ease-in-out infinite 4s;"></div>
   </div>
 
-  <!-- Контент поверх градиента -->
-  <header class="relative bg-white shadow p-4 flex justify-between items-center z-10">
+  <!-- Контент поверх фона -->
+  <header class="relative z-10 p-4 flex justify-between items-center bg-white shadow">
     <h1 class="text-xl font-bold text-blue-600">СППР</h1>
     <nav class="space-x-4">
       <a href="index.html" class="text-blue-700 hover:underline">Главная</a>
@@ -29,10 +32,17 @@
     </nav>
   </header>
 
-  <main class="relative max-w-6xl mx-auto px-8 py-10 z-10">
-    <h2 class="text-4xl font-bold mb-6 text-center text-blue-800">Добро пожаловать в СППР</h2>
-    <p class="text-center text-gray-700 text-lg">Система поддержки принятия решений для работы с проблемными ситуациями.</p>
+  <main class="relative z-10 max-w-6xl mx-auto px-8 py-10 text-center">
+    <h2 class="text-4xl font-bold mb-6 text-blue-800">Добро пожаловать в СППР</h2>
+    <p class="text-lg text-gray-700">Система поддержки принятия решений для работы с проблемными ситуациями.</p>
   </main>
 
 </body>
-</html>
+
+<style>
+/* Плавная анимация пульсации шаров */
+@keyframes pulseSlow {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 0.85; }
+}
+</style>
