@@ -19,6 +19,7 @@
 </header>
 
 <main class="max-w-4xl mx-auto px-6 py-10">
+  <!-- Основная информация о проблеме -->
   <h2 class="text-3xl font-bold mb-4">Недостаток запасных частей для ТО</h2>
   <p class="text-gray-600 mb-2"><strong>Ключевые слова:</strong> запасные части, склад, поставки</p>
   <p class="text-gray-600 mb-2"><strong>Описание:</strong> На складе недостаточно тормозных колодок и фильтров для текущих заказов клиентов автосервиса.</p>
@@ -27,14 +28,24 @@
 
   <hr class="my-6">
 
+  <!-- Прогресс решения -->
+  <section id="progress" class="mb-6">
+    <h3 class="text-2xl font-semibold mb-2">Прогресс решения</h3>
+    <div class="w-full bg-gray-300 rounded h-6">
+      <div id="progressBar" class="bg-blue-600 h-6 rounded" style="width:40%;"></div>
+    </div>
+    <p id="progressText" class="text-sm mt-1 text-gray-700">40% выполнено</p>
+  </section>
+
   <!-- Комментарии -->
   <section id="comments">
     <h3 class="text-2xl font-semibold mb-4">Комментарии</h3>
 
-    <!-- Форма добавления комментария с именем пользователя -->
+    <!-- Форма добавления комментария с именем и фото -->
     <form id="commentForm" class="mb-6 space-y-3">
       <input id="usernameInput" type="text" placeholder="Ваше имя" class="w-full p-2 border rounded-md" required>
       <textarea id="commentInput" placeholder="Напишите комментарий..." class="w-full p-3 border rounded-md" required></textarea>
+      <input type="file" id="commentImage" accept="image/*" class="w-full"/>
       <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Добавить комментарий</button>
     </form>
 
@@ -64,15 +75,23 @@
 let comments = [];
 let solutionVotes = [0,;
 
+// Функция отрисовки комментариев с изображениями
 function renderComments() {
   const list = document.getElementById('commentList');
   list.innerHTML = '';
   comments.forEach((comment,index)=>{
     const div = document.createElement('div');
     div.className = "bg-white p-4 rounded shadow";
+    
+    let imgHtml = '';
+    if(comment.image){
+      imgHtml = `<img src="${comment.image}" class="mt-2 mb-2 max-w-full rounded shadow"/>`;
+    }
+
     div.innerHTML = `
       <p class="font-semibold mb-1">${comment.name}</p>
       <p class="mb-2">${comment.text}</p>
+      ${imgHtml}
       <div class="flex items-center space-x-4 text-sm text-gray-600">
         <button onclick="like(${index})" class="hover:text-blue-600">👍 ${comment.likes}</button>
         <button onclick="dislike(${index})" class="hover:text-red-600">👎 ${comment.dislikes}</button>
@@ -80,6 +99,7 @@ function renderComments() {
       </div>
       <div id="replies-${index}" class="mt-2 ml-4 space-y-2"></div>
     `;
+
     list.appendChild(div);
 
     const repliesDiv = document.getElementById(`replies-${index}`);
@@ -92,15 +112,28 @@ function renderComments() {
   });
 }
 
+// Обработка формы комментариев с изображением
 document.getElementById('commentForm').addEventListener('submit',function(e){
   e.preventDefault();
   const name = document.getElementById('usernameInput').value.trim();
   const text = document.getElementById('commentInput').value.trim();
+  const file = document.getElementById('commentImage').files[;
+  
   if(name && text){
-    comments.push({name:name,text:text,likes:0,dislikes:0,replies:[]});
+    if(file){
+      const reader = new FileReader();
+      reader.onload = function(){
+        comments.push({name:name,text:text,image:reader.result,likes:0,dislikes:0,replies:[]});
+        renderComments();
+      }
+      reader.readAsDataURL(file);
+    } else {
+      comments.push({name:name,text:text,image:null,likes:0,dislikes:0,replies:[]});
+      renderComments();
+    }
     document.getElementById('usernameInput').value='';
     document.getElementById('commentInput').value='';
-    renderComments();
+    document.getElementById('commentImage').value='';
   }
 });
 
@@ -114,6 +147,7 @@ function replyPrompt(index){
   }
 }
 
+// Голосование за решения
 function voteSolution(index){
   solutionVotes[index]++;
   document.getElementById(`vote-${index}`).innerText = solutionVotes[index];
