@@ -18,71 +18,87 @@
   </nav>
 </header>
 
-<main class="max-w-4xl mx-auto px-6 py-10">
-  <!-- Основная информация о проблеме -->
-  <h2 class="text-3xl font-bold mb-4">Недостаток запасных частей для ТО</h2>
-  <p class="text-gray-600 mb-2"><strong>Ключевые слова:</strong> запасные части, склад, поставки</p>
-  <p class="text-gray-600 mb-2"><strong>Описание:</strong> На складе недостаточно тормозных колодок и фильтров для текущих заказов клиентов автосервиса.</p>
-  <p class="text-gray-600 mb-2"><strong>Категория:</strong> Техническая</p>
-  <p class="text-gray-600 mb-6"><strong>Важность:</strong> Высокая</p>
+<main class="max-w-7xl mx-auto px-6 py-10 flex flex-col lg:flex-row gap-6">
+  <!-- Левая колонка: описание и комментарии -->
+  <div class="flex-1">
+    <!-- Основная информация о проблеме -->
+    <h2 class="text-3xl font-bold mb-4">Недостаток запасных частей для ТО</h2>
+    <p class="text-gray-600 mb-2"><strong>Ключевые слова:</strong> запасные части, склад, поставки</p>
+    <p class="text-gray-600 mb-2"><strong>Описание:</strong> На складе недостаточно тормозных колодок и фильтров для текущих заказов клиентов автосервиса.</p>
+    <p class="text-gray-600 mb-2"><strong>Категория:</strong> Техническая</p>
+    <p class="text-gray-600 mb-6"><strong>Важность:</strong> Высокая</p>
 
-  <hr class="my-6">
+    <hr class="my-6">
 
-  <!-- Прогресс решения -->
-  <section id="progress" class="mb-6">
-    <h3 class="text-2xl font-semibold mb-2">Прогресс решения</h3>
-    <div class="w-full bg-gray-300 rounded h-6">
-      <div id="progressBar" class="bg-blue-600 h-6 rounded" style="width:40%;"></div>
-    </div>
-    <p id="progressText" class="text-sm mt-1 text-gray-700">40% выполнено</p>
-  </section>
+    <!-- Комментарии -->
+    <section id="comments">
+      <h3 class="text-2xl font-semibold mb-4">Комментарии</h3>
 
-  <!-- Комментарии -->
-  <section id="comments">
-    <h3 class="text-2xl font-semibold mb-4">Комментарии</h3>
+      <!-- Форма добавления комментария с именем и фото -->
+      <form id="commentForm" class="mb-6 space-y-3">
+        <input id="usernameInput" type="text" placeholder="Ваше имя" class="w-full p-2 border rounded-md" required>
+        <textarea id="commentInput" placeholder="Напишите комментарий..." class="w-full p-3 border rounded-md" required></textarea>
+        <input type="file" id="commentImage" accept="image/*" class="w-full"/>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Добавить комментарий</button>
+      </form>
 
-    <!-- Форма добавления комментария с именем и фото -->
-    <form id="commentForm" class="mb-6 space-y-3">
-      <input id="usernameInput" type="text" placeholder="Ваше имя" class="w-full p-2 border rounded-md" required>
-      <textarea id="commentInput" placeholder="Напишите комментарий..." class="w-full p-3 border rounded-md" required></textarea>
-      <input type="file" id="commentImage" accept="image/*" class="w-full"/>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Добавить комментарий</button>
-    </form>
+      <!-- Список комментариев -->
+      <div id="commentList" class="space-y-4"></div>
+    </section>
+  </div>
 
-    <!-- Список комментариев -->
-    <div id="commentList" class="space-y-4"></div>
-  </section>
+  <!-- Правая колонка: карта и предложения по решению -->
+  <div class="w-full lg:w-96 flex flex-col gap-6 sticky top-24">
+    <!-- Интерактивная карта -->
+    <section id="solutionMap">
+      <h3 class="text-2xl font-semibold mb-4">Интерактивная карта решений</h3>
+      <svg width="100%" height="300" class="border rounded shadow">
+        <!-- Склады -->
+        <circle cx="50" cy="50" r="20" fill="blue" class="cursor-pointer" onclick="showInfo('Склад A')"/>
+        <circle cx="200" cy="80" r="20" fill="green" class="cursor-pointer" onclick="showInfo('Склад B')"/>
+        <!-- Автосервис -->
+        <rect x="350" y="150" width="50" height="50" fill="orange" class="cursor-pointer" onclick="showInfo('Мастерская')"/>
+        <!-- Поставщики -->
+        <circle cx="100" cy="250" r="20" fill="red" class="cursor-pointer" onclick="showInfo('Поставщик 1')"/>
+        <circle cx="300" cy="250" r="20" fill="red" class="cursor-pointer" onclick="showInfo('Поставщик 2')"/>
+      </svg>
 
-  <hr class="my-6">
-
-  <!-- Предложения решений с голосованием -->
-  <section id="solutions" class="mt-6">
-    <h3 class="text-2xl font-semibold mb-4">Предложения по решению</h3>
-    <div class="space-y-4">
-      <div class="bg-white p-4 rounded shadow flex justify-between items-center">
-        <span>Заказать дополнительные тормозные колодки и фильтры у нескольких поставщиков</span>
-        <button onclick="voteSolution(0)" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">👍 <span id="vote-0">0</span></button>
+      <!-- Модальное окно -->
+      <div id="infoBox" class="hidden fixed top-1/3 left-1/3 bg-white p-4 shadow rounded z-50">
+        <p id="infoText" class="mb-4"></p>
+        <button onclick="closeInfo()" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Закрыть</button>
       </div>
-      <div class="bg-white p-4 rounded shadow flex justify-between items-center">
-        <span>Перенести часть заказов на другой склад с наличием деталей</span>
-        <button onclick="voteSolution(1)" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">👍 <span id="vote-1">0</span></button>
+    </section>
+
+    <!-- Предложения решений -->
+    <section id="solutions">
+      <h3 class="text-2xl font-semibold mb-4">Предложения по решению</h3>
+      <div class="space-y-4">
+        <div class="bg-white p-4 rounded shadow flex justify-between items-center">
+          <span>Заказать дополнительные тормозные колодки и фильтры у нескольких поставщиков</span>
+          <button onclick="voteSolution(0)" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">👍 <span id="vote-0">0</span></button>
+        </div>
+        <div class="bg-white p-4 rounded shadow flex justify-between items-center">
+          <span>Перенести часть заказов на другой склад с наличием деталей</span>
+          <button onclick="voteSolution(1)" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">👍 <span id="vote-1">0</span></button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </main>
 
 <script>
 let comments = [];
 let solutionVotes = [0,;
 
-// Функция отрисовки комментариев с изображениями
+// Комментарии с фото и именем
 function renderComments() {
   const list = document.getElementById('commentList');
   list.innerHTML = '';
   comments.forEach((comment,index)=>{
     const div = document.createElement('div');
     div.className = "bg-white p-4 rounded shadow";
-    
+
     let imgHtml = '';
     if(comment.image){
       imgHtml = `<img src="${comment.image}" class="mt-2 mb-2 max-w-full rounded shadow"/>`;
@@ -112,13 +128,13 @@ function renderComments() {
   });
 }
 
-// Обработка формы комментариев с изображением
+// Обработка формы комментариев
 document.getElementById('commentForm').addEventListener('submit',function(e){
   e.preventDefault();
   const name = document.getElementById('usernameInput').value.trim();
   const text = document.getElementById('commentInput').value.trim();
   const file = document.getElementById('commentImage').files[;
-  
+
   if(name && text){
     if(file){
       const reader = new FileReader();
@@ -151,6 +167,15 @@ function replyPrompt(index){
 function voteSolution(index){
   solutionVotes[index]++;
   document.getElementById(`vote-${index}`).innerText = solutionVotes[index];
+}
+
+// Интерактивная карта
+function showInfo(name){
+  document.getElementById('infoText').innerText = 'Информация о: ' + name;
+  document.getElementById('infoBox').classList.remove('hidden');
+}
+function closeInfo(){
+  document.getElementById('infoBox').classList.add('hidden');
 }
 
 // Изначальная отрисовка комментариев
