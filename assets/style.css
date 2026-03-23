@@ -1,0 +1,16 @@
+/* Пример кастомных стилей */
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+h1, h2, h3 {
+  color: #1E40AF; /* Цвет для заголовков */
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

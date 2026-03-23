@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Проблемные ситуации</title>
+  <link href="assets/tailwind.min.css" rel="stylesheet" />
+  <link href="assets/styles.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+<header class="bg-white shadow p-4 flex justify-between items-center">
+  <h1 class="text-xl font-bold text-blue-600">СППР</h1>
+  <nav class="space-x-4">
+    <a href="index.html" class="text-blue-700 hover:underline">Главная</a>
+    <a href="problems.html" class="text-blue-700 hover:underline">Проблемные ситуации</a>
+    <a href="materials.html" class="text-blue-700 hover:underline">Материалы</a>
+    <a href="login.html" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Вход</a>
+  </nav>
+</header>
+
+<main class="p-8">
+  <h2 class="text-3xl font-bold text-center mb-8">Проблемные ситуации</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+    <div class="bg-white p-6 rounded shadow flex flex-col justify-between">
+      <h3 class="text-lg font-semibold">НОВАЯ ПРОБЛЕМНАЯ СИТУАЦИЯ</h3>
+      <p class="text-sm text-gray-600 mb-4">Если вы столкнулись с проблемной ситуацией, вы можете начать обсуждение.</p>
+      <div class="text-center mt-auto">
+        <a href="new-problem.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Перейти</a>
+      </div>
+    </div>
+
+    <div class="bg-white p-6 rounded shadow flex flex-col justify-between">
+      <h3 class="text-lg font-semibold">ОТКРЫТЫЕ ПРОБЛЕМНЫЕ СИТУАЦИИ</h3>
+      <p class="text-sm text-gray-600 mb-4">Вы можете ознакомиться с перечнем открытых проблемных ситуаций, которые требуют разрешения.</p>
+      <div class="text-center mt-auto">
+        <a href="open-problems.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Перейти</a>
+      </div>
+    </div>
+
+    <div class="bg-white p-6 rounded shadow flex flex-col justify-between">
+      <h3 class="text-lg font-semibold">ЗАКРЫТЫЕ ПРОБЛЕМНЫЕ СИТУАЦИИ</h3>
+      <p class="text-sm text-gray-600 mb-4">Вы можете ознакомиться с разрешенными проблемными ситуациями (прецедентами).</p>
+      <div class="text-center mt-auto">
+        <a href="closed-problems.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Перейти</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+<script src="scripts/problems.js"></script>
+</body>
+</html>
