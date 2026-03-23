@@ -31,32 +31,47 @@
   <section id="comments">
     <h3 class="text-2xl font-semibold mb-4">Комментарии</h3>
 
-    <!-- Форма добавления комментария -->
+    <!-- Форма добавления комментария с именем пользователя -->
     <form id="commentForm" class="mb-6 space-y-3">
-      <textarea id="commentInput" placeholder="Напишите комментарий..." class="w-full p-3 border rounded-md"></textarea>
+      <input id="usernameInput" type="text" placeholder="Ваше имя" class="w-full p-2 border rounded-md" required>
+      <textarea id="commentInput" placeholder="Напишите комментарий..." class="w-full p-3 border rounded-md" required></textarea>
       <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Добавить комментарий</button>
     </form>
 
     <!-- Список комментариев -->
-    <div id="commentList" class="space-y-4">
-      <!-- Комментарии будут добавляться здесь через JS -->
+    <div id="commentList" class="space-y-4"></div>
+  </section>
+
+  <hr class="my-6">
+
+  <!-- Предложения решений с голосованием -->
+  <section id="solutions" class="mt-6">
+    <h3 class="text-2xl font-semibold mb-4">Предложения по решению</h3>
+    <div class="space-y-4">
+      <div class="bg-white p-4 rounded shadow flex justify-between items-center">
+        <span>Заказать дополнительные тормозные колодки и фильтры у нескольких поставщиков</span>
+        <button onclick="voteSolution(0)" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">👍 <span id="vote-0">0</span></button>
+      </div>
+      <div class="bg-white p-4 rounded shadow flex justify-between items-center">
+        <span>Перенести часть заказов на другой склад с наличием деталей</span>
+        <button onclick="voteSolution(1)" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">👍 <span id="vote-1">0</span></button>
+      </div>
     </div>
   </section>
 </main>
 
 <script>
-// Массив для комментариев
 let comments = [];
+let solutionVotes = [0,;
 
-// Функция отрисовки комментариев
 function renderComments() {
   const list = document.getElementById('commentList');
   list.innerHTML = '';
-  comments.forEach((comment, index) => {
+  comments.forEach((comment,index)=>{
     const div = document.createElement('div');
     div.className = "bg-white p-4 rounded shadow";
-
     div.innerHTML = `
+      <p class="font-semibold mb-1">${comment.name}</p>
       <p class="mb-2">${comment.text}</p>
       <div class="flex items-center space-x-4 text-sm text-gray-600">
         <button onclick="like(${index})" class="hover:text-blue-600">👍 ${comment.likes}</button>
@@ -65,12 +80,10 @@ function renderComments() {
       </div>
       <div id="replies-${index}" class="mt-2 ml-4 space-y-2"></div>
     `;
-
     list.appendChild(div);
 
-    // Добавляем ответы
     const repliesDiv = document.getElementById(`replies-${index}`);
-    comment.replies.forEach(reply => {
+    comment.replies.forEach(reply=>{
       const replyDiv = document.createElement('div');
       replyDiv.className = "bg-gray-100 p-2 rounded";
       replyDiv.innerText = reply;
@@ -79,31 +92,34 @@ function renderComments() {
   });
 }
 
-// Добавление комментария
-document.getElementById('commentForm').addEventListener('submit', function(e){
+document.getElementById('commentForm').addEventListener('submit',function(e){
   e.preventDefault();
-  const input = document.getElementById('commentInput');
-  if(input.value.trim() !== ''){
-    comments.push({text: input.value.trim(), likes: 0, dislikes: 0, replies: []});
-    input.value = '';
+  const name = document.getElementById('usernameInput').value.trim();
+  const text = document.getElementById('commentInput').value.trim();
+  if(name && text){
+    comments.push({name:name,text:text,likes:0,dislikes:0,replies:[]});
+    document.getElementById('usernameInput').value='';
+    document.getElementById('commentInput').value='';
     renderComments();
   }
 });
 
-// Лайки и дизлайки
 function like(index){ comments[index].likes++; renderComments(); }
 function dislike(index){ comments[index].dislikes++; renderComments(); }
-
-// Ответ на комментарий
 function replyPrompt(index){
   const reply = prompt("Ваш ответ:");
-  if(reply && reply.trim() !== ''){
+  if(reply && reply.trim()!==''){
     comments[index].replies.push(reply.trim());
     renderComments();
   }
 }
 
-// Изначально отрисуем пустой список
+function voteSolution(index){
+  solutionVotes[index]++;
+  document.getElementById(`vote-${index}`).innerText = solutionVotes[index];
+}
+
+// Изначальная отрисовка комментариев
 renderComments();
 </script>
 
