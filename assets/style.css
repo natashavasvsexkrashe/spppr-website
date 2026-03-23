@@ -3,7 +3,6 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-/* Цвет заголовков */
 h1, h2, h3 {
   color: #1E40AF;
 }
@@ -14,29 +13,4 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-/* Градиентный шар */
-@layer utilities {
-  .bg-gradient-radial {
-    background-image: radial-gradient(circle, var(--tw-gradient-stops));
-  }
-}
-
-/* Анимация пульсации */
-@keyframes pulseSlow {
-  0%, 100% { transform: scale(1) translate(-25%, -25%); opacity: 0.7; }
-  50% { transform: scale(1.1) translate(-25%, -25%); opacity: 0.85; }
-}
-
-.animate-pulseSlow {
-  animation: pulseSlow 8s ease-in-out infinite;
-}
-
-/* Возможность добавлять задержку анимации */
-.delay-2s {
-  animation-delay: 2s;
-}
-.delay-4s {
-  animation-delay: 4s;
 }
