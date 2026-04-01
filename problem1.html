@@ -44,31 +44,32 @@
   </div>
 
   <!-- Правая колонка: панель СППР + предложенные решения -->
-  <div class="w-full lg:w-96 flex flex-col gap-4 sticky top-24">
+  <div class="w-full lg:w-96 flex flex-col gap-2 sticky top-24">
+    <!-- Текст над кнопками -->
+    <p class="text-gray-700 font-semibold mb-2">Вы можете выбрать средства поддержки принятия решений:</p>
+
     <!-- Кнопки инструментов -->
-    <button onclick="showTool('map')" class="bg-blue-600 text-white p-3 rounded hover:bg-blue-700">Интерактивная карта решений</button>
-    <button onclick="showTool('voting')" class="bg-green-600 text-white p-3 rounded hover:bg-green-700">Голосование команды</button>
-    <button onclick="showTool('swot')" class="bg-yellow-600 text-white p-3 rounded hover:bg-yellow-700">SWOT-анализ</button>
-    <button onclick="showTool('priority')" class="bg-purple-600 text-white p-3 rounded hover:bg-purple-700">Матрица приоритетов</button>
-    <button onclick="showTool('risks')" class="bg-red-600 text-white p-3 rounded hover:bg-red-700">Анализ рисков</button>
-    <button onclick="showTool('history')" class="bg-gray-600 text-white p-3 rounded hover:bg-gray-700">История решений</button>
+    <button onclick="showTool('map')" class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 text-sm">Интерактивная карта решений</button>
+    <button onclick="showTool('voting')" class="bg-green-600 text-white py-2 rounded hover:bg-green-700 text-sm">Голосование команды</button>
+    <button onclick="showTool('swot')" class="bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700 text-sm">SWOT-анализ</button>
+    <button onclick="showTool('priority')" class="bg-purple-600 text-white py-2 rounded hover:bg-purple-700 text-sm">Матрица приоритетов</button>
+    <button onclick="showTool('risks')" class="bg-red-600 text-white py-2 rounded hover:bg-red-700 text-sm">Анализ рисков</button>
+    <button onclick="showTool('history')" class="bg-gray-600 text-white py-2 rounded hover:bg-gray-700 text-sm">История решений</button>
 
     <!-- Контейнер для выбранного инструмента -->
-    <div id="toolContainer" class="mt-4 bg-white p-4 rounded shadow min-h-[300px]">
-      <p class="text-gray-600">Выберите инструмент для работы с проблемой.</p>
-    </div>
+    <div id="toolContainer" class="mt-2 bg-white p-3 rounded shadow min-h-[250px]"></div>
 
     <!-- Блок предложенных решений -->
-    <section id="solutions" class="mt-6">
-      <h3 class="text-2xl font-semibold mb-4">Предложенные решения</h3>
-      <div class="space-y-4">
-        <div class="bg-white p-4 rounded shadow flex justify-between items-center">
+    <section id="solutions" class="mt-2">
+      <h3 class="text-xl font-semibold mb-2">Предложенные решения</h3>
+      <div class="space-y-2 text-sm">
+        <div class="bg-white p-2 rounded shadow flex justify-between items-center">
           <span>Заказать дополнительные тормозные колодки и фильтры у нескольких поставщиков</span>
-          <button onclick="voteSolution(0)" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">👍 <span id="vote-0">0</span></button>
+          <button onclick="voteSolution(0)" class="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 text-xs">👍 <span id="vote-0">0</span></button>
         </div>
-        <div class="bg-white p-4 rounded shadow flex justify-between items-center">
+        <div class="bg-white p-2 rounded shadow flex justify-between items-center">
           <span>Перенести часть заказов на другой склад с наличием деталей</span>
-          <button onclick="voteSolution(1)" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">👍 <span id="vote-1">0</span></button>
+          <button onclick="voteSolution(1)" class="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 text-xs">👍 <span id="vote-1">0</span></button>
         </div>
       </div>
     </section>
@@ -156,7 +157,7 @@ function showTool(tool){
   switch(tool){
     case 'map':
       container.innerHTML = `
-        <svg width="100%" height="300" class="border rounded shadow">
+        <svg width="100%" height="250" class="border rounded shadow">
           <circle cx="50" cy="50" r="20" fill="blue" class="cursor-pointer" onclick="alert('Склад A')"/>
           <text x="50" y="45" text-anchor="middle" fill="white" font-size="12">Склад A</text>
 
