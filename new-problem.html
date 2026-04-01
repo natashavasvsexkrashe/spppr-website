@@ -58,10 +58,10 @@
       </select>
     </div>
 
-    <!-- Затрагиваемые отделы (checkbox) -->
+    <!-- Затрагиваемые отделы (checkbox + текстовое поле) -->
     <div class="md:col-span-2">
       <label class="block font-medium text-lg mb-1">Затрагиваемые отделы</label>
-      <div class="grid grid-cols-2 gap-2">
+      <div class="grid grid-cols-2 gap-2 mb-2">
         <label class="flex items-center space-x-2">
           <input type="checkbox" name="departments[]" value="отдел закупок">
           <span>Отдел закупок</span>
@@ -87,7 +87,8 @@
           <span>Финансовый отдел</span>
         </label>
       </div>
-      <p class="text-gray-500 text-sm mt-1">Вы можете выбрать несколько отделов, которые затрагивает проблема.</p>
+      <input type="text" name="departments_custom" placeholder="Введите название отдела самостоятельно" class="w-full p-2 border rounded-md mb-1">
+      <p class="text-gray-500 text-sm">Вы можете выбрать несколько отделов, которые затрагивает проблема, либо ввести название отдела самостоятельно.</p>
     </div>
 
     <!-- Дата возникновения -->
