@@ -2,73 +2,70 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Проблема: Недостаток запасных частей для ТО</title>
+  <title>Проблема: Недостаток запасных частей</title>
 
   <!-- Tailwind -->
   <link href="assets/tailwind.min.css" rel="stylesheet" />
 
-  <!-- Твой CSS -->
-  <link href="styles.css" rel="stylesheet" />
+  <!-- CSS (ВАЖНО: из assets) -->
+  <link href="assets/styles.css" rel="stylesheet" />
 </head>
 
 <body class="bg-gray-100 text-gray-900 font-sans">
 
 <header class="bg-white shadow p-4 flex justify-between items-center">
   <h1 class="text-xl font-bold text-blue-600">СППР</h1>
-  <nav class="space-x-4">
-    <a href="index.html" class="text-blue-700 hover:underline">Главная</a>
-    <a href="problems.html" class="text-blue-700 hover:underline">Проблемные ситуации</a>
-    <a href="open-problems.html" class="text-blue-700 hover:underline">Открытые проблемы</a>
-    <a href="login.html" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Вход</a>
-  </nav>
 </header>
 
-<main class="max-w-7xl mx-auto px-6 py-10 flex flex-col lg:flex-row gap-6">
+<main class="max-w-5xl mx-auto p-6">
 
-  <!-- ЛЕВАЯ ЧАСТЬ -->
-  <div class="flex-1">
-    <h2 class="text-3xl font-bold mb-4">Недостаток запасных частей для ТО</h2>
+  <h2 class="text-2xl font-bold mb-4">
+    Недостаток запасных частей для ТО
+  </h2>
 
-    <p class="text-gray-600 mb-6">
-      На складе недостаточно тормозных колодок и фильтров для текущих заказов.
-    </p>
+  <p class="mb-6 text-gray-600">
+    На складе недостаточно тормозных колодок и фильтров.
+  </p>
 
-    <hr class="my-6">
+  <!-- КОММЕНТАРИИ -->
+  <section>
+    <h3 class="text-xl font-semibold mb-3">Комментарии</h3>
 
-    <!-- КОММЕНТАРИИ -->
-    <section>
-      <h3 class="text-2xl font-semibold mb-4">Комментарии сотрудников</h3>
+    <form id="commentForm" class="space-y-3 mb-6">
+      <input id="usernameInput" type="text" placeholder="Имя"
+        class="w-full p-2 border rounded" required>
 
-      <form id="commentForm" class="mb-6 space-y-3">
-        <input id="usernameInput" type="text" placeholder="Ваше имя" class="w-full p-2 border rounded" required>
-        <textarea id="commentInput" placeholder="Комментарий..." class="w-full p-2 border rounded" required></textarea>
-        <button class="bg-blue-600 text-white px-4 py-2 rounded">Добавить</button>
-      </form>
+      <textarea id="commentInput" placeholder="Комментарий"
+        class="w-full p-2 border rounded" required></textarea>
 
-      <div id="commentList" class="space-y-4"></div>
-    </section>
-  </div>
+      <button class="bg-blue-600 text-white px-4 py-2 rounded">
+        Добавить
+      </button>
+    </form>
+
+    <div id="commentList" class="space-y-4"></div>
+  </section>
 
 </main>
 
 <script>
 let comments = [
-  {name:"Иван", text:"Нужно срочно заказать детали", likes:2, dislikes:0, replies:[]},
-  {name:"Анна", text:"Можно перераспределить со склада", likes:1, dislikes:0, replies:[]}
+  {name:"Иван", text:"Нужно срочно заказать детали", likes:2, dislikes:0},
+  {name:"Анна", text:"Можно взять с другого склада", likes:1, dislikes:0}
 ];
 
 function renderComments() {
   const list = document.getElementById('commentList');
   list.innerHTML = '';
 
-  comments.forEach((c, i) => {
+  comments.forEach(c => {
     const div = document.createElement('div');
     div.className = "bg-white p-4 rounded shadow";
 
     div.innerHTML = `
       <b>${c.name}</b>
       <p>${c.text}</p>
-      <div class="text-sm mt-2">
+      <div class="text-sm text-gray-500 mt-2">
         👍 ${c.likes} | 👎 ${c.dislikes}
       </div>
     `;
@@ -84,7 +81,7 @@ document.getElementById('commentForm').addEventListener('submit', function(e){
   const text = commentInput.value.trim();
 
   if(name && text){
-    comments.push({name, text, likes:0, dislikes:0, replies:[]});
+    comments.push({name, text, likes:0, dislikes:0});
     renderComments();
     commentForm.reset();
   }
