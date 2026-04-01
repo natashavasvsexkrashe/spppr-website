@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Проблема: Недостаток запасных частей для ТО</title>
-  <link href="styles.css" rel="stylesheet" />
+
+  <!-- Tailwind -->
   <link href="assets/tailwind.min.css" rel="stylesheet" />
+
+  <!-- Твой CSS -->
+  <link href="styles.css" rel="stylesheet" />
 </head>
+
 <body class="bg-gray-100 text-gray-900 font-sans">
 
 <header class="bg-white shadow p-4 flex justify-between items-center">
@@ -19,137 +24,72 @@
 </header>
 
 <main class="max-w-7xl mx-auto px-6 py-10 flex flex-col lg:flex-row gap-6">
+
+  <!-- ЛЕВАЯ ЧАСТЬ -->
   <div class="flex-1">
     <h2 class="text-3xl font-bold mb-4">Недостаток запасных частей для ТО</h2>
-    <p class="text-gray-600 mb-1"><strong>Ключевые слова:</strong> тормозные колодки, фильтры, склад, поставки, автосервис</p>
-    <p class="text-gray-600 mb-1"><strong>Описание:</strong> На складе недостаточно тормозных колодок и фильтров для текущих заказов клиентов автосервиса. Проблема затрагивает выполнение ТО вовремя.</p>
-    <p class="text-gray-600 mb-1"><strong>Категория:</strong> Техническая</p>
-    <p class="text-gray-600 mb-1"><strong>Приоритет:</strong> Высокий</p>
-    <p class="text-gray-600 mb-1"><strong>Затрагиваемые отделы:</strong> Склад, Сервисная мастерская, Логистика, Отдел закупок, Финансовый отдел, Другой отдел: "Контроль качества"</p>
-    <p class="text-gray-600 mb-1"><strong>Дата возникновения:</strong> 2026-03-23</p>
-    <p class="text-gray-600 mb-1"><strong>Влияние на клиентов:</strong> Значительное</p>
-    <p class="text-gray-600 mb-6"><strong>Время решения:</strong> 3 дня</p>
-    <p class="text-gray-600 mb-6"><strong>Файл:</strong> <a href="files/problem123.pdf" class="text-blue-600 underline">скачать прикрепленный файл</a></p>
+
+    <p class="text-gray-600 mb-6">
+      На складе недостаточно тормозных колодок и фильтров для текущих заказов.
+    </p>
 
     <hr class="my-6">
 
-    <section id="comments">
+    <!-- КОММЕНТАРИИ -->
+    <section>
       <h3 class="text-2xl font-semibold mb-4">Комментарии сотрудников</h3>
+
       <form id="commentForm" class="mb-6 space-y-3">
-        <input id="usernameInput" type="text" placeholder="Ваше имя" class="w-full p-2 border rounded-md" required>
-        <textarea id="commentInput" placeholder="Напишите комментарий..." class="w-full p-3 border rounded-md" required></textarea>
-        <input type="file" id="commentImage" accept="image/*" class="w-full"/>
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Добавить комментарий</button>
+        <input id="usernameInput" type="text" placeholder="Ваше имя" class="w-full p-2 border rounded" required>
+        <textarea id="commentInput" placeholder="Комментарий..." class="w-full p-2 border rounded" required></textarea>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded">Добавить</button>
       </form>
 
       <div id="commentList" class="space-y-4"></div>
     </section>
   </div>
 
-  <!-- Блок справа -->
-  <div class="w-full lg:w-96 flex flex-col gap-2 sticky top-24">
-    <p class="text-gray-700 font-semibold mb-2">Вы можете выбрать средства поддержки принятия решений:</p>
-    <button onclick="showTool('map')" class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 text-sm">Интерактивная карта решений</button>
-    <button onclick="showTool('voting')" class="bg-green-600 text-white py-2 rounded hover:bg-green-700 text-sm">Голосование команды</button>
-    <button onclick="showTool('swot')" class="bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700 text-sm">SWOT-анализ</button>
-    <button onclick="showTool('priority')" class="bg-purple-600 text-white py-2 rounded hover:bg-purple-700 text-sm">Матрица приоритетов</button>
-    <button onclick="showTool('risks')" class="bg-red-600 text-white py-2 rounded hover:bg-red-700 text-sm">Анализ рисков</button>
-    <button onclick="showTool('history')" class="bg-gray-600 text-white py-2 rounded hover:bg-gray-700 text-sm">История решений</button>
-
-    <div id="toolContainer" class="mt-2 bg-white p-3 rounded shadow min-h-[250px]"></div>
-
-    <section id="solutions" class="mt-2">
-      <h3 class="text-xl font-semibold mb-2">Предложенные решения</h3>
-      <div class="space-y-2 text-sm">
-        <div class="bg-white p-2 rounded shadow flex justify-between items-center">
-          <span>Заказать дополнительные тормозные колодки и фильтры у нескольких поставщиков</span>
-        </div>
-        <div class="bg-white p-2 rounded shadow flex justify-between items-center">
-          <span>Перенести часть заказов на другой склад с наличием деталей</span>
-        </div>
-      </div>
-    </section>
-  </div>
 </main>
 
 <script>
 let comments = [
-  {name:"Иван Петров", text:"Предлагаю заказать дополнительные тормозные колодки.", image:null, likes:2, dislikes:0, replies:["Согласен, но сначала проверим остатки на складе","Может есть альтернативный поставщик?"]},
-  {name:"Анна Смирнова", text:"Можно перенести часть заказов на другой склад.", image:null, likes:1, dislikes:0, replies:["Да, это ускорит процесс","Нужно согласовать с логистикой"]},
-  {name:"Сергей Ковалев", text:"Я проверил поставки, завтра придет новая партия фильтров.", image:null, likes:3, dislikes:0, replies:["Отлично, тогда можем распределять заказы"]}
+  {name:"Иван", text:"Нужно срочно заказать детали", likes:2, dislikes:0, replies:[]},
+  {name:"Анна", text:"Можно перераспределить со склада", likes:1, dislikes:0, replies:[]}
 ];
 
 function renderComments() {
   const list = document.getElementById('commentList');
-  list.innerHTML = ''; // очищаем список перед рендером
-  comments.forEach((comment, index) => {
+  list.innerHTML = '';
+
+  comments.forEach((c, i) => {
     const div = document.createElement('div');
     div.className = "bg-white p-4 rounded shadow";
 
-    let imgHtml = '';
-    if (comment.image) {
-      imgHtml = `<img src="${comment.image}" class="mt-2 mb-2 max-w-full rounded shadow"/>`;
-    }
-
     div.innerHTML = `
-      <p class="font-semibold mb-1">${comment.name}</p>
-      <p class="mb-2">${comment.text}</p>
-      ${imgHtml}
-      <div class="flex items-center space-x-4 text-sm text-gray-600">
-        <button onclick="like(${index})" class="hover:text-blue-600">👍 ${comment.likes}</button>
-        <button onclick="dislike(${index})" class="hover:text-red-600">👎 ${comment.dislikes}</button>
-        <button onclick="replyPrompt(${index})" class="hover:text-green-600">Ответить</button>
+      <b>${c.name}</b>
+      <p>${c.text}</p>
+      <div class="text-sm mt-2">
+        👍 ${c.likes} | 👎 ${c.dislikes}
       </div>
-      <div id="replies-${index}" class="mt-2 ml-4 space-y-2"></div>
     `;
 
     list.appendChild(div);
-
-    const repliesDiv = document.getElementById(`replies-${index}`);
-    comment.replies.forEach(reply => {
-      const replyDiv = document.createElement('div');
-      replyDiv.className = "bg-gray-100 p-2 rounded";
-      replyDiv.innerText = reply;
-      repliesDiv.appendChild(replyDiv);
-    });
   });
 }
 
-document.getElementById('commentForm').addEventListener('submit', function (e) {
+document.getElementById('commentForm').addEventListener('submit', function(e){
   e.preventDefault();
-  const name = document.getElementById('usernameInput').value.trim();
-  const text = document.getElementById('commentInput').value.trim();
-  const file = document.getElementById('commentImage').files[;
 
-  if (name && text) {
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function () {
-        comments.push({ name: name, text: text, image: reader.result, likes: 0, dislikes: 0, replies: [] });
-        renderComments();
-      };
-      reader.readAsDataURL(file);
-    } else {
-      comments.push({ name: name, text: text, image: null, likes: 0, dislikes: 0, replies: [] });
-      renderComments();
-    }
-    document.getElementById('usernameInput').value = '';
-    document.getElementById('commentInput').value = '';
-    document.getElementById('commentImage').value = '';
+  const name = usernameInput.value.trim();
+  const text = commentInput.value.trim();
+
+  if(name && text){
+    comments.push({name, text, likes:0, dislikes:0, replies:[]});
+    renderComments();
+    commentForm.reset();
   }
 });
 
-function like(index) { comments[index].likes++; renderComments(); }
-function dislike(index) { comments[index].dislikes++; renderComments(); }
-function replyPrompt(index) {
-  const reply = prompt("Ваш ответ:");
-  if (reply && reply.trim() !== '') {
-    comments[index].replies.push(reply.trim());
-    renderComments();
-  }
-}
-
-// Отрисовка стартовых комментариев
 renderComments();
 </script>
 
