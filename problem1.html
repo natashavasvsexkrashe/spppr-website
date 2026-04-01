@@ -2,93 +2,199 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Проблема: Недостаток запасных частей</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Проблема: Недостаток запасных частей для ТО</title>
 
-  <!-- Tailwind -->
   <link href="assets/tailwind.min.css" rel="stylesheet" />
-
-  <!-- CSS (ВАЖНО: из assets) -->
   <link href="assets/styles.css" rel="stylesheet" />
 </head>
 
 <body class="bg-gray-100 text-gray-900 font-sans">
 
-<header class="bg-white shadow p-4 flex justify-between items-center">
-  <h1 class="text-xl font-bold text-blue-600">СППР</h1>
-</header>
+  <!-- ШАПКА -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-blue-600">СППР</h1>
 
-<main class="max-w-5xl mx-auto p-6">
+    <nav class="space-x-4">
+      <a href="index.html" class="text-blue-700 hover:underline">Главная</a>
+      <a href="problems.html" class="text-blue-700 hover:underline">Проблемные ситуации</a>
+      <a href="open-problems.html" class="text-blue-700 hover:underline">Открытые проблемы</a>
+      <a href="login.html" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Вход</a>
+    </nav>
+  </header>
 
-  <h2 class="text-2xl font-bold mb-4">
-    Недостаток запасных частей для ТО
-  </h2>
+  <!-- ОСНОВНОЙ БЛОК -->
+  <main class="max-w-7xl mx-auto px-6 py-10 flex flex-col lg:flex-row gap-6">
 
-  <p class="mb-6 text-gray-600">
-    На складе недостаточно тормозных колодок и фильтров.
-  </p>
+    <!-- ЛЕВАЯ ЧАСТЬ -->
+    <div class="flex-1">
+      <h2 class="text-3xl font-bold mb-4">Недостаток запасных частей для ТО</h2>
 
-  <!-- КОММЕНТАРИИ -->
-  <section>
-    <h3 class="text-xl font-semibold mb-3">Комментарии</h3>
+      <p class="text-gray-600 mb-4">
+        На складе недостаточно тормозных колодок и фильтров для текущих заказов.
+      </p>
 
-    <form id="commentForm" class="space-y-3 mb-6">
-      <input id="usernameInput" type="text" placeholder="Имя"
-        class="w-full p-2 border rounded" required>
-
-      <textarea id="commentInput" placeholder="Комментарий"
-        class="w-full p-2 border rounded" required></textarea>
-
-      <button class="bg-blue-600 text-white px-4 py-2 rounded">
-        Добавить
-      </button>
-    </form>
-
-    <div id="commentList" class="space-y-4"></div>
-  </section>
-
-</main>
-
-<script>
-let comments = [
-  {name:"Иван", text:"Нужно срочно заказать детали", likes:2, dislikes:0},
-  {name:"Анна", text:"Можно взять с другого склада", likes:1, dislikes:0}
-];
-
-function renderComments() {
-  const list = document.getElementById('commentList');
-  list.innerHTML = '';
-
-  comments.forEach(c => {
-    const div = document.createElement('div');
-    div.className = "bg-white p-4 rounded shadow";
-
-    div.innerHTML = `
-      <b>${c.name}</b>
-      <p>${c.text}</p>
-      <div class="text-sm text-gray-500 mt-2">
-        👍 ${c.likes} | 👎 ${c.dislikes}
+      <div class="bg-white rounded-lg shadow p-5 mb-6">
+        <h3 class="text-xl font-semibold mb-3">Описание проблемной ситуации</h3>
+        <p class="text-gray-700 mb-3">
+          В ходе планового технического обслуживания автопарка выявлена нехватка
+          запасных частей, необходимых для своевременного выполнения заявок.
+          Отсутствие достаточного количества тормозных колодок и фильтров может
+          привести к задержкам ремонта, увеличению времени простоя техники и
+          нарушению графика обслуживания.
+        </p>
+        <p class="text-gray-700 mb-3">
+          Проблема требует оперативного решения, так как дальнейшее накопление
+          невыполненных заявок способно повлиять на исправность транспорта и
+          эффективность работы предприятия.
+        </p>
+        <p class="text-gray-700">
+          Необходимо определить оптимальный способ устранения дефицита:
+          срочная закупка, перераспределение запасов между складами или
+          корректировка плана технического обслуживания.
+        </p>
       </div>
-    `;
 
-    list.appendChild(div);
-  });
-}
+      <hr class="my-6">
 
-document.getElementById('commentForm').addEventListener('submit', function(e){
-  e.preventDefault();
+      <!-- КОММЕНТАРИИ -->
+      <section>
+        <h3 class="text-2xl font-semibold mb-4">Комментарии сотрудников</h3>
 
-  const name = usernameInput.value.trim();
-  const text = commentInput.value.trim();
+        <form id="commentForm" class="mb-6 space-y-3">
+          <input
+            id="usernameInput"
+            type="text"
+            placeholder="Ваше имя"
+            class="w-full p-2 border rounded"
+            required
+          />
 
-  if(name && text){
-    comments.push({name, text, likes:0, dislikes:0});
+          <textarea
+            id="commentInput"
+            placeholder="Комментарий..."
+            class="w-full p-2 border rounded"
+            required
+          ></textarea>
+
+          <button
+            type="submit"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Добавить
+          </button>
+        </form>
+
+        <div id="commentList" class="space-y-4"></div>
+      </section>
+    </div>
+
+    <!-- ПРАВАЯ ЧАСТЬ -->
+    <aside class="w-full lg:w-80">
+      <div class="bg-white rounded-lg shadow p-5 mb-6">
+        <h3 class="text-xl font-semibold mb-4">Информация по проблеме</h3>
+
+        <div class="space-y-3 text-sm">
+          <div>
+            <span class="font-semibold">Статус:</span>
+            <span class="text-red-600 font-medium">Открыта</span>
+          </div>
+
+          <div>
+            <span class="font-semibold">Приоритет:</span>
+            <span class="text-orange-600 font-medium">Высокий</span>
+          </div>
+
+          <div>
+            <span class="font-semibold">Категория:</span>
+            <span>Склад / Техническое обслуживание</span>
+          </div>
+
+          <div>
+            <span class="font-semibold">Дата регистрации:</span>
+            <span>12.05.2025</span>
+          </div>
+
+          <div>
+            <span class="font-semibold">Ответственный:</span>
+            <span>Начальник отдела снабжения</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-5 mb-6">
+        <h3 class="text-xl font-semibold mb-4">Возможные решения</h3>
+        <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2">
+          <li>Срочно оформить заказ на недостающие детали</li>
+          <li>Перераспределить запасы с других складов</li>
+          <li>Временно скорректировать график ТО</li>
+          <li>Провести анализ причин дефицита</li>
+        </ul>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-5">
+        <h3 class="text-xl font-semibold mb-4">Риски</h3>
+        <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2">
+          <li>Срыв графика технического обслуживания</li>
+          <li>Увеличение простоя транспорта</li>
+          <li>Рост затрат на срочные закупки</li>
+          <li>Снижение надежности эксплуатации техники</li>
+        </ul>
+      </div>
+    </aside>
+
+  </main>
+
+  <script>
+    const comments = [
+      { name: "Иван", text: "Нужно срочно заказать детали", likes: 2, dislikes: 0 },
+      { name: "Анна", text: "Можно перераспределить со склада", likes: 1, dislikes: 0 }
+    ];
+
+    function renderComments() {
+      const list = document.getElementById("commentList");
+      list.innerHTML = "";
+
+      comments.forEach((c) => {
+        const div = document.createElement("div");
+        div.className = "bg-white p-4 rounded shadow";
+
+        div.innerHTML = `
+          <b>${c.name}</b>
+          <p class="mt-2">${c.text}</p>
+          <div class="text-sm mt-2 text-gray-500">
+            👍 ${c.likes} | 👎 ${c.dislikes}
+          </div>
+        `;
+
+        list.appendChild(div);
+      });
+    }
+
+    document.getElementById("commentForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const usernameInput = document.getElementById("usernameInput");
+      const commentInput = document.getElementById("commentInput");
+
+      const name = usernameInput.value.trim();
+      const text = commentInput.value.trim();
+
+      if (name && text) {
+        comments.push({
+          name: name,
+          text: text,
+          likes: 0,
+          dislikes: 0
+        });
+
+        renderComments();
+        this.reset();
+      }
+    });
+
     renderComments();
-    commentForm.reset();
-  }
-});
-
-renderComments();
-</script>
+  </script>
 
 </body>
 </html>
