@@ -22,10 +22,17 @@
   <!-- Левая колонка -->
   <div class="flex-1">
     <h2 class="text-3xl font-bold mb-4">Недостаток запасных частей для ТО</h2>
-    <p class="text-gray-600 mb-2"><strong>Ключевые слова:</strong> запасные части, склад, поставки</p>
-    <p class="text-gray-600 mb-2"><strong>Описание:</strong> На складе недостаточно тормозных колодок и фильтров для текущих заказов клиентов автосервиса.</p>
-    <p class="text-gray-600 mb-2"><strong>Категория:</strong> Техническая</p>
-    <p class="text-gray-600 mb-6"><strong>Важность:</strong> Высокая</p>
+    
+    <p class="text-gray-600 mb-1"><strong>Ключевые слова:</strong> тормозные колодки, фильтры, склад, поставки, автосервис</p>
+    <p class="text-gray-600 mb-1"><strong>Описание:</strong> На складе недостаточно тормозных колодок и фильтров для текущих заказов клиентов автосервиса. Проблема затрагивает выполнение ТО вовремя.</p>
+    <p class="text-gray-600 mb-1"><strong>Категория:</strong> Техническая</p>
+    <p class="text-gray-600 mb-1"><strong>Приоритет:</strong> Высокий</p>
+    
+    <p class="text-gray-600 mb-1"><strong>Затрагиваемые отделы:</strong> Склад, Сервисная мастерская, Логистика, Отдел закупок, Финансовый отдел, Другой отдел: "Контроль качества"</p>
+    <p class="text-gray-600 mb-1"><strong>Дата возникновения:</strong> 2026-03-23</p>
+    <p class="text-gray-600 mb-1"><strong>Влияние на клиентов:</strong> Значительное</p>
+    <p class="text-gray-600 mb-6"><strong>Время решения:</strong> 3 дня</p>
+    <p class="text-gray-600 mb-6"><strong>Файл:</strong> <a href="files/problem123.pdf" class="text-blue-600 underline">скачать прикрепленный файл</a></p>
 
     <hr class="my-6">
 
@@ -45,10 +52,8 @@
 
   <!-- Правая колонка: панель СППР + предложенные решения -->
   <div class="w-full lg:w-96 flex flex-col gap-2 sticky top-24">
-    <!-- Текст над кнопками -->
     <p class="text-gray-700 font-semibold mb-2">Вы можете выбрать средства поддержки принятия решений:</p>
 
-    <!-- Кнопки инструментов -->
     <button onclick="showTool('map')" class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 text-sm">Интерактивная карта решений</button>
     <button onclick="showTool('voting')" class="bg-green-600 text-white py-2 rounded hover:bg-green-700 text-sm">Голосование команды</button>
     <button onclick="showTool('swot')" class="bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700 text-sm">SWOT-анализ</button>
@@ -56,10 +61,8 @@
     <button onclick="showTool('risks')" class="bg-red-600 text-white py-2 rounded hover:bg-red-700 text-sm">Анализ рисков</button>
     <button onclick="showTool('history')" class="bg-gray-600 text-white py-2 rounded hover:bg-gray-700 text-sm">История решений</button>
 
-    <!-- Контейнер для выбранного инструмента -->
     <div id="toolContainer" class="mt-2 bg-white p-3 rounded shadow min-h-[250px]"></div>
 
-    <!-- Блок предложенных решений -->
     <section id="solutions" class="mt-2">
       <h3 class="text-xl font-semibold mb-2">Предложенные решения</h3>
       <div class="space-y-2 text-sm">
@@ -80,7 +83,6 @@
 let comments = [];
 let solutionVotes = [0,;
 
-// Комментарии с фото
 function renderComments() {
   const list = document.getElementById('commentList');
   list.innerHTML = '';
@@ -151,7 +153,6 @@ function replyPrompt(index){
   }
 }
 
-// Панель инструментов СППР
 function showTool(tool){
   const container = document.getElementById('toolContainer');
   switch(tool){
@@ -195,13 +196,11 @@ function showTool(tool){
   }
 }
 
-// Голосование за решения
 function voteSolution(index){
   solutionVotes[index]++;
   document.getElementById(`vote-${index}`).innerText = solutionVotes[index];
 }
 
-// Изначальная отрисовка комментариев
 renderComments();
 </script>
 
