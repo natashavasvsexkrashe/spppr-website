@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Проблема: Недостаток запасных частей для ТО</title>
+  <link href="styles.css" rel="stylesheet" />
   <link href="assets/tailwind.min.css" rel="stylesheet" />
-  <link href="assets/styles.css" rel="stylesheet" />
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
 
@@ -147,11 +147,6 @@ function replyPrompt(index) {
     comments[index].replies.push(reply.trim());
     renderComments();
   }
-}
-
-function showTool(tool) {
-  const container = document.getElementById('toolContainer');
-  container.innerHTML = `<p class="text-gray-600">Выбран инструмент: ${tool}</p>`;
 }
 
 // Отрисовка стартовых комментариев
