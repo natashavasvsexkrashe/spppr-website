@@ -58,17 +58,36 @@
       </select>
     </div>
 
-    <!-- Затрагиваемые отделы -->
+    <!-- Затрагиваемые отделы (checkbox) -->
     <div class="md:col-span-2">
-      <label for="departments" class="block font-medium text-lg">Затрагиваемые отделы</label>
-      <select id="departments" name="departments[]" multiple class="w-full p-2 border rounded-md">
-        <option value="отдел закупок">Отдел закупок</option>
-        <option value="склад">Склад</option>
-        <option value="отдел продаж">Отдел продаж</option>
-        <option value="сервисная мастерская">Сервисная мастерская</option>
-        <option value="логистика">Логистика</option>
-        <option value="финансовый отдел">Финансовый отдел</option>
-      </select>
+      <label class="block font-medium text-lg mb-1">Затрагиваемые отделы</label>
+      <div class="grid grid-cols-2 gap-2">
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" name="departments[]" value="отдел закупок">
+          <span>Отдел закупок</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" name="departments[]" value="склад">
+          <span>Склад</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" name="departments[]" value="отдел продаж">
+          <span>Отдел продаж</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" name="departments[]" value="сервисная мастерская">
+          <span>Сервисная мастерская</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" name="departments[]" value="логистика">
+          <span>Логистика</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="checkbox" name="departments[]" value="финансовый отдел">
+          <span>Финансовый отдел</span>
+        </label>
+      </div>
+      <p class="text-gray-500 text-sm mt-1">Вы можете выбрать несколько отделов, которые затрагивает проблема.</p>
     </div>
 
     <!-- Дата возникновения -->
