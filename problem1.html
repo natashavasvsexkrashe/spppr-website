@@ -81,17 +81,17 @@ let comments = [
   {name:"Сергей Ковалев", text:"Я проверил поставки, завтра придет новая партия фильтров.", image:null, likes:3, dislikes:0, replies:["Отлично, тогда можем распределять заказы"]}
 ];
 
-let solutionVotes = [0,;
+let solutionVotes = [0, ;
 
 function renderComments() {
   const list = document.getElementById('commentList');
-  list.innerHTML = '';
-  comments.forEach((comment,index)=>{
+  list.innerHTML = ''; // очищаем список перед рендером
+  comments.forEach((comment, index) => {
     const div = document.createElement('div');
     div.className = "bg-white p-4 rounded shadow";
 
     let imgHtml = '';
-    if(comment.image){
+    if (comment.image) {
       imgHtml = `<img src="${comment.image}" class="mt-2 mb-2 max-w-full rounded shadow"/>`;
     }
 
@@ -110,7 +110,7 @@ function renderComments() {
     list.appendChild(div);
 
     const repliesDiv = document.getElementById(`replies-${index}`);
-    comment.replies.forEach(reply=>{
+    comment.replies.forEach(reply => {
       const replyDiv = document.createElement('div');
       replyDiv.className = "bg-gray-100 p-2 rounded";
       replyDiv.innerText = reply;
@@ -119,46 +119,46 @@ function renderComments() {
   });
 }
 
-document.getElementById('commentForm').addEventListener('submit',function(e){
+document.getElementById('commentForm').addEventListener('submit', function (e) {
   e.preventDefault();
   const name = document.getElementById('usernameInput').value.trim();
   const text = document.getElementById('commentInput').value.trim();
   const file = document.getElementById('commentImage').files[;
 
-  if(name && text){
-    if(file){
+  if (name && text) {
+    if (file) {
       const reader = new FileReader();
-      reader.onload = function(){
-        comments.push({name:name,text:text,image:reader.result,likes:0,dislikes:0,replies:[]});
+      reader.onload = function () {
+        comments.push({ name: name, text: text, image: reader.result, likes: 0, dislikes: 0, replies: [] });
         renderComments();
-      }
+      };
       reader.readAsDataURL(file);
     } else {
-      comments.push({name:name,text:text,image:null,likes:0,dislikes:0,replies:[]});
+      comments.push({ name: name, text: text, image: null, likes: 0, dislikes: 0, replies: [] });
       renderComments();
     }
-    document.getElementById('usernameInput').value='';
-    document.getElementById('commentInput').value='';
-    document.getElementById('commentImage').value='';
+    document.getElementById('usernameInput').value = '';
+    document.getElementById('commentInput').value = '';
+    document.getElementById('commentImage').value = '';
   }
 });
 
-function like(index){ comments[index].likes++; renderComments(); }
-function dislike(index){ comments[index].dislikes++; renderComments(); }
-function replyPrompt(index){
+function like(index) { comments[index].likes++; renderComments(); }
+function dislike(index) { comments[index].dislikes++; renderComments(); }
+function replyPrompt(index) {
   const reply = prompt("Ваш ответ:");
-  if(reply && reply.trim()!==''){
+  if (reply && reply.trim() !== '') {
     comments[index].replies.push(reply.trim());
     renderComments();
   }
 }
 
-function showTool(tool){
+function showTool(tool) {
   const container = document.getElementById('toolContainer');
   container.innerHTML = `<p class="text-gray-600">Выбран инструмент: ${tool}</p>`;
 }
 
-function voteSolution(index){
+function voteSolution(index) {
   solutionVotes[index]++;
   document.getElementById(`vote-${index}`).innerText = solutionVotes[index];
 }
