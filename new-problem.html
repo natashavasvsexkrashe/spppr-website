@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Создание новой проблемы</title>
-  <link href="assets/tailwind.min.css" rel="stylesheet" />
-  <link href="assets/styles.css" rel="stylesheet" />
+  <link href="assets/tailwind.min.css" rel="stylesheet">
+  <link href="assets/styles.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans">
 <header class="bg-white shadow p-4 flex justify-between items-center">
@@ -16,38 +16,102 @@
   </nav>
 </header>
 
-<main class="max-w-6xl mx-auto px-8 py-10">
-  <h2 class="text-3xl font-bold mb-6">Создание новой проблемной ситуации</h2>
-  <form action="insert_problem.php" method="POST" class="space-y-6">
+<main class="max-w-4xl mx-auto px-6 py-6">
+  <h2 class="text-2xl font-bold mb-4">Создание новой проблемной ситуации</h2>
+  <form action="insert_problem.php" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <!-- Название -->
     <div>
       <label for="title" class="block font-medium text-lg">Название проблемы</label>
-      <input type="text" id="title" name="title" required class="w-full p-3 mt-2 border rounded-md">
+      <input type="text" id="title" name="title" placeholder="От 3 до 10 слов" required class="w-full p-2 border rounded-md">
     </div>
+
+    <!-- Ключевые слова -->
     <div>
       <label for="keywords" class="block font-medium text-lg">Ключевые слова</label>
-      <input type="text" id="keywords" name="keywords" required class="w-full p-3 mt-2 border rounded-md">
+      <input type="text" id="keywords" name="keywords" placeholder="До 7 слов или словосочетаний через запятую" required class="w-full p-2 border rounded-md">
     </div>
-    <div>
-      <label for="description" class="block font-medium text-lg">Описание ситуации</label>
-      <textarea id="description" name="description" rows="4" required class="w-full p-3 mt-2 border rounded-md"></textarea>
+
+    <!-- Описание -->
+    <div class="md:col-span-2">
+      <label for="description" class="block font-medium text-lg">Описание</label>
+      <textarea id="description" name="description" rows="3" placeholder="Опишите кратко вашу проблемную ситуацию" required class="w-full p-2 border rounded-md"></textarea>
     </div>
+
+    <!-- Категория -->
     <div>
       <label for="category" class="block font-medium text-lg">Категория</label>
-      <select id="category" name="category" required class="w-full p-3 mt-2 border rounded-md">
+      <select id="category" name="category" required class="w-full p-2 border rounded-md">
         <option value="финансовая">Финансовая</option>
         <option value="техническая">Техническая</option>
         <option value="коллективная">Коллективная</option>
       </select>
     </div>
+
+    <!-- Приоритет -->
     <div>
       <label for="priority" class="block font-medium text-lg">Приоритет</label>
-      <select id="priority" name="priority" required class="w-full p-3 mt-2 border rounded-md">
+      <select id="priority" name="priority" required class="w-full p-2 border rounded-md">
         <option value="высокий">Высокий</option>
         <option value="средний">Средний</option>
         <option value="низкий">Низкий</option>
       </select>
     </div>
-    <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">Создать проблему</button>
+
+    <!-- Затрагиваемые отделы -->
+    <div class="md:col-span-2">
+      <label for="departments" class="block font-medium text-lg">Затрагиваемые отделы</label>
+      <select id="departments" name="departments[]" multiple class="w-full p-2 border rounded-md">
+        <option value="отдел закупок">Отдел закупок</option>
+        <option value="склад">Склад</option>
+        <option value="отдел продаж">Отдел продаж</option>
+        <option value="сервисная мастерская">Сервисная мастерская</option>
+        <option value="логистика">Логистика</option>
+        <option value="финансовый отдел">Финансовый отдел</option>
+      </select>
+    </div>
+
+    <!-- Дата возникновения -->
+    <div>
+      <label for="date" class="block font-medium text-lg">Дата возникновения</label>
+      <input type="date" id="date" name="date" class="w-full p-2 border rounded-md">
+    </div>
+
+    <!-- Влияние на клиентов -->
+    <div>
+      <label for="impact" class="block font-medium text-lg">Влияние на клиентов</label>
+      <select id="impact" name="impact" class="w-full p-2 border rounded-md">
+        <option value="значительное">Значительное</option>
+        <option value="умеренное">Умеренное</option>
+        <option value="незначительное">Незначительное</option>
+      </select>
+    </div>
+
+    <!-- Время решения -->
+    <div>
+      <label for="timeframe" class="block font-medium text-lg">Время решения</label>
+      <select id="timeframe" name="timeframe" class="w-full p-2 border rounded-md">
+        <option value="1 час">1 час</option>
+        <option value="2 часа">2 часа</option>
+        <option value="3 часа">3 часа</option>
+        <option value="1 день">1 день</option>
+        <option value="3 дня">3 дня</option>
+        <option value="1 неделя">1 неделя</option>
+        <option value="2 недели">2 недели</option>
+      </select>
+    </div>
+
+    <!-- Файл -->
+    <div class="md:col-span-2">
+      <label for="file" class="block font-medium text-lg">Прикрепить файл (по необходимости)</label>
+      <input type="file" id="file" name="file" class="w-full p-2 border rounded-md">
+    </div>
+
+    <!-- Кнопка отправки -->
+    <div class="md:col-span-2">
+      <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Создать проблему</button>
+    </div>
+
   </form>
 </main>
 </body>
