@@ -46,6 +46,32 @@
     </section>
   </div>
 
+  <!-- Блок справа -->
+  <div class="w-full lg:w-96 flex flex-col gap-2 sticky top-24">
+    <p class="text-gray-700 font-semibold mb-2">Вы можете выбрать средства поддержки принятия решений:</p>
+    <button onclick="showTool('map')" class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 text-sm">Интерактивная карта решений</button>
+    <button onclick="showTool('voting')" class="bg-green-600 text-white py-2 rounded hover:bg-green-700 text-sm">Голосование команды</button>
+    <button onclick="showTool('swot')" class="bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700 text-sm">SWOT-анализ</button>
+    <button onclick="showTool('priority')" class="bg-purple-600 text-white py-2 rounded hover:bg-purple-700 text-sm">Матрица приоритетов</button>
+    <button onclick="showTool('risks')" class="bg-red-600 text-white py-2 rounded hover:bg-red-700 text-sm">Анализ рисков</button>
+    <button onclick="showTool('history')" class="bg-gray-600 text-white py-2 rounded hover:bg-gray-700 text-sm">История решений</button>
+
+    <div id="toolContainer" class="mt-2 bg-white p-3 rounded shadow min-h-[250px]"></div>
+
+    <section id="solutions" class="mt-2">
+      <h3 class="text-xl font-semibold mb-2">Предложенные решения</h3>
+      <div class="space-y-2 text-sm">
+        <div class="bg-white p-2 rounded shadow flex justify-between items-center">
+          <span>Заказать дополнительные тормозные колодки и фильтры у нескольких поставщиков</span>
+          <button onclick="voteSolution(0)" class="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 text-xs">👍 <span id="vote-0">0</span></button>
+        </div>
+        <div class="bg-white p-2 rounded shadow flex justify-between items-center">
+          <span>Перенести часть заказов на другой склад с наличием деталей</span>
+          <button onclick="voteSolution(1)" class="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 text-xs">👍 <span id="vote-1">0</span></button>
+        </div>
+      </div>
+    </section>
+  </div>
 </main>
 
 <script>
@@ -54,6 +80,8 @@ let comments = [
   {name:"Анна Смирнова", text:"Можно перенести часть заказов на другой склад.", image:null, likes:1, dislikes:0, replies:["Да, это ускорит процесс","Нужно согласовать с логистикой"]},
   {name:"Сергей Ковалев", text:"Я проверил поставки, завтра придет новая партия фильтров.", image:null, likes:3, dislikes:0, replies:["Отлично, тогда можем распределять заказы"]}
 ];
+
+let solutionVotes = [0,;
 
 function renderComments() {
   const list = document.getElementById('commentList');
@@ -123,6 +151,16 @@ function replyPrompt(index){
     comments[index].replies.push(reply.trim());
     renderComments();
   }
+}
+
+function showTool(tool){
+  const container = document.getElementById('toolContainer');
+  container.innerHTML = `<p class="text-gray-600">Выбран инструмент: ${tool}</p>`;
+}
+
+function voteSolution(index){
+  solutionVotes[index]++;
+  document.getElementById(`vote-${index}`).innerText = solutionVotes[index];
 }
 
 // Отрисовка стартовых комментариев
